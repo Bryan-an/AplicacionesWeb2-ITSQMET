@@ -51,6 +51,33 @@
       <li class="nav-item">
         <a class="nav-link" href="FormularioVocales.php">Ejercicio 8</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="FibonacciVista.php">Ejercicio 9</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="TablaMultiplicarVista.php">Ejercicio 10</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="NumParesVista.php">Ejercicio 11</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="NumPrimosVista.php">Ejercicio 12</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="TresNumerosVista.php">Ejercicio 13</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="VocalesVista.php">Ejercicio 14</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="ArbolVista.php">Ejercicio 15</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="ClavesVista.php">Ejercicio 16</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="PalabraAscendenteVista.php">Ejercicio 17</a>
+      </li>
     </ul>
   </div>
 </nav>
