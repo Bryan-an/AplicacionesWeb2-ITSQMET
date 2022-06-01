@@ -1,6 +1,7 @@
 <?php
 
-// Realizar un programa que permita imprimir los 10 primeros números primos a partir del número ingresado por el usuario
+// Realizar un programa que permita imprimir los 10 primeros
+// números primos a partir del número ingresado por el usuario
 
 function calculatePrimeNumbers($initNumber)
 {
