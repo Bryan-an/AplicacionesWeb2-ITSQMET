@@ -1,4 +1,4 @@
-<?php include "header.php";?>
+<?php include "../header.php";?>
     <div class="container p-4">
       <h1 class="text-center">Ejercicio 4: Mayor y menor</h1>
       <div class="row p-4">
@@ -38,7 +38,7 @@
             n2,
             n3,
           },
-          url: "./php/CalcularMayorMenor.php",
+          url: "../Controlador/CalcularMayorMenor.php",
           async: true,
           type: "GET",
           dataType: "text",
@@ -48,4 +48,4 @@
         });
       };
     </script>
-<?php include "footer.php";?>
+<?php include "../footer.php";?>

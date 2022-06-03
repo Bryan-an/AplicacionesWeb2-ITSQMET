@@ -1,2 +1,2 @@
 <?php
-header("Location: vista-promedios.php");
+header("Location: Vistas/vista-promedios.php");

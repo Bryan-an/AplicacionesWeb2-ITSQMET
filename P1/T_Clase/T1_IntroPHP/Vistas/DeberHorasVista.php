@@ -1,38 +1,39 @@
-<?php include "header.php";?>
-    <div class="container p-4">
-      <h1 class="text-center">Ejercicio 6: Longitud de cadenas</h1>
+<?php include "../header.php";?>
+
+<div class="container p-4">
+      <h1 class="text-center">Deber: Horas trabajadas</h1>
       <div class="row p-4">
         <div class="col-4 offset-4">
           <form>
             <div class="form-group">
-              <label for="str1">Cadena 1:</label>
-              <input type="text" name="str1" id="str1" class="form-control" />
+              <label for="start">Hora de entrada:</label>
+              <input type="time" name="start" id="start" class="form-control" />
             </div>
             <div class="form-group">
-              <label for="str2">Cadena 2:</label>
-              <input type="number" name="str2" id="str2" class="form-control" />
+              <label for="end">Hora de salida:</label>
+              <input type="time" name="end" id="end" class="form-control" />
             </div>
             <button class="btn btn-primary" type="button" onclick="calculate()">
               Calcular
             </button>
           </form>
-          <div class="pt-5" id="result"></div>
         </div>
       </div>
+      <div class="pt-5 text-center" id="result"></div>
     </div>
 
     <script>
       const calculate = () => {
-        let str1 = document.getElementById("str1").value;
-        let str2 = document.getElementById("str2").value;
+        let start = document.getElementById("start").value;
+        let end = document.getElementById("end").value;
         const resultContainer = document.getElementById("result");
 
         $.ajax({
           data: {
-            str1,
-            str2,
+            start,
+            end
           },
-          url: "./php/LongitudCadenas.php",
+          url: "../Controlador/DeberHorasControlador.php",
           async: true,
           type: "GET",
           dataType: "text",
@@ -42,4 +43,5 @@
         });
       };
     </script>
-<?php include "footer.php";?>
+
+<?php include "../footer.php";?>

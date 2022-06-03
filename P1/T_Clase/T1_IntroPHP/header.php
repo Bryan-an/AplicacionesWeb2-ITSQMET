@@ -78,6 +78,12 @@
       <li class="nav-item">
         <a class="nav-link" href="PalabraAscendenteVista.php">Ejercicio 17</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="18_PeliculasVista.php">Ejercicio 18</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="DeberHorasVista.php">Deber: Horas Trabajadas</a>
+      </li>
     </ul>
   </div>
 </nav>

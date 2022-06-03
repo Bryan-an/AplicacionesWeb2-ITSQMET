@@ -1,16 +1,18 @@
-<?php include "header.php";?>
+<?php include "../header.php";?>
     <div class="container p-4">
-      <h1 class="text-center">Ejercicio 2: Venta de gafas de sol</h1>
+      <h1 class="text-center">Ejercicio 8: Vocales</h1>
       <div class="row p-4">
         <div class="col-4 offset-4">
           <form>
             <div class="form-group">
-              <label for="cant">Cantidad:</label>
-              <input type="number" name="cant" id="cant" class="form-control" />
-            </div>
-            <div class="form-group">
-              <label for="prec">Precio:</label>
-              <input type="number" name="prec" id="prec" class="form-control" />
+              <label for="letra">Letra:</label>
+              <input
+                type="text"
+                name="letra"
+                id="letra"
+                class="form-control"
+                required
+              />
             </div>
             <button class="btn btn-primary" type="button" onclick="calculate()">
               Calcular
@@ -23,16 +25,14 @@
 
     <script>
       const calculate = () => {
-        let quantity = document.getElementById("cant").value;
-        let price = document.getElementById("prec").value;
+        let letra = document.getElementById("letra").value;
         const resultContainer = document.getElementById("result");
 
         $.ajax({
           data: {
-            cant: quantity,
-            prec: price,
+            letra,
           },
-          url: "./php/VentaGafas.php",
+          url: "../Controlador/VocalNoVocal.php",
           async: true,
           type: "GET",
           dataType: "text",
@@ -42,4 +42,4 @@
         });
       };
     </script>
-<?php include "footer.php";?>
+<?php include "../footer.php";?>
