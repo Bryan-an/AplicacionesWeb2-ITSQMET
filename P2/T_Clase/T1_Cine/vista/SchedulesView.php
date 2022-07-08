@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customers View</title>
+    <title>Vista Horarios</title>
     <?php include '../controlador/libs.php'?>
-    <script type="text/javascript" src="../controlador/js/CustomersFunctions.js"></script>
+    <script type="text/javascript" src="../controlador/js/SchedulesFunctions.js"></script>
 </head>
 <body>
     <?php include '../controlador/header.php'?>
     <div>
         <div class="container" align="center">
-            <h2>Customers View</h2>
+            <h2>Vista Horarios</h2>
             <hr>
             <form>
                 <table>
@@ -21,14 +21,14 @@
                             <label>Buscar</label>
                         </td>
                         <td>
-                            <input type="text" id="buscar">
+                            <input type="text" id="search-text">
                         </td>
                     </tr>
                     <tr>
                         <td>
                         </td>
                         <td>
-                            <button type="button" onclick="buscarC()" class="btn btn-primary" style="width: 75px; height: 35px;">Buscar</button>
+                            <button type="button" onclick="searchSchedules()" class="btn btn-primary" style="width: 75px; height: 35px;">Buscar</button>
                         </td>
                     </tr>
                     <tr>
@@ -56,7 +56,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Crear clientes</h4>
+                <h4 class="modal-title">Crear horario</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -66,49 +66,25 @@
                         <table>
                             <tr>
                                 <td>
-                                    <label>Name:</label>
+                                    <label>Hora de inicio:</label>
                                 </td>
                                 <td>
-                                    <input type="text" id="nIn">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Last name:</label>
-                                </td>
-                                <td>
-                                    <input type="text" id="lnIn">
+                                    <input type="time" id="startIn">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>ID Card:</label>
+                                    <label>Hora de culminación:</label>
                                 </td>
                                 <td>
-                                    <input type="text" id="icIn">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Email:</label>
-                                </td>
-                                <td>
-                                    <input type="email" id="eIn">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Date of birth:</label>
-                                </td>
-                                <td>
-                                    <input type="date" id="dobIn">
+                                    <input type="time" id="endIn">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" onclick="">
+                                    <button type="button" class="btn btn-primary" onclick="createSchedule()">
                                         Crear
                                     </button>
                                 </td>
@@ -119,7 +95,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeCreateButton">Cerrar</button>
                 </div>
 
             </div>
@@ -134,7 +110,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Actualizar clientes</h4>
+                <h4 class="modal-title">Actualiza horario</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -152,50 +128,26 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <label>Name:</label>
+                                    <label>Hora de inicio:</label>
                                 </td>
                                 <td>
-                                    <input type="text" id="nUp">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Last name:</label>
-                                </td>
-                                <td>
-                                    <input type="text" id="lnUp">
+                                    <input type="time" id="startUp">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>ID Card:</label>
+                                    <label>Hora de culminación:</label>
                                 </td>
                                 <td>
-                                    <input type="text" id="icUp">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Email:</label>
-                                </td>
-                                <td>
-                                    <input type="email" id="eUp">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Date of birth:</label>
-                                </td>
-                                <td>
-                                    <input type="date" id="dobUp">
+                                    <input type="time" id="endUp">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" onclick="updateCustomers()">
-                                        Update
+                                    <button type="button" class="btn btn-primary" onclick="updateSchedule()">
+                                        Actualizar
                                     </button>
                                 </td>
                             </tr>
@@ -205,7 +157,35 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeUpdateButton">Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- The Modal -->
+    <div class="modal fade" id="deleteModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Eliminar horario</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body" align="center">
+                    <input type="hidden" id="idDelete">
+                    <h2>¿Deseas eliminar el horario?</h2>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="deleteSchedule()">Eliminar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeDeleteButton">Cancelar</button>
                 </div>
 
             </div>

@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customers View</title>
+    <title>Vista Películas</title>
     <?php include '../controlador/libs.php'?>
-    <script type="text/javascript" src="../controlador/js/CustomersFunctions.js"></script>
+    <script type="text/javascript" src="../controlador/js/MoviesFunctions.js"></script>
 </head>
 <body>
     <?php include '../controlador/header.php'?>
     <div>
         <div class="container" align="center">
-            <h2>Customers View</h2>
+            <h2>Vista Películas</h2>
             <hr>
             <form>
                 <table>
@@ -21,14 +21,14 @@
                             <label>Buscar</label>
                         </td>
                         <td>
-                            <input type="text" id="buscar">
+                            <input type="text" id="search-text">
                         </td>
                     </tr>
                     <tr>
                         <td>
                         </td>
                         <td>
-                            <button type="button" onclick="buscarC()" class="btn btn-primary" style="width: 75px; height: 35px;">Buscar</button>
+                            <button type="button" onclick="searchMovies()" class="btn btn-primary" style="width: 75px; height: 35px;">Buscar</button>
                         </td>
                     </tr>
                     <tr>
@@ -56,7 +56,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Crear clientes</h4>
+                <h4 class="modal-title">Crear película</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -66,49 +66,41 @@
                         <table>
                             <tr>
                                 <td>
-                                    <label>Name:</label>
+                                    <label>Nombre:</label>
                                 </td>
                                 <td>
-                                    <input type="text" id="nIn">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Last name:</label>
-                                </td>
-                                <td>
-                                    <input type="text" id="lnIn">
+                                    <input type="text" id="nameIn">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>ID Card:</label>
+                                    <label>Categoría:</label>
                                 </td>
                                 <td>
-                                    <input type="text" id="icIn">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Email:</label>
-                                </td>
-                                <td>
-                                    <input type="email" id="eIn">
+                                    <input type="text" id="categoryIn">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>Date of birth:</label>
+                                    <label>Tipo:</label>
                                 </td>
                                 <td>
-                                    <input type="date" id="dobIn">
+                                    <input type="text" id="typeIn">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Calificación:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="ratingIn">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" onclick="insertCustomers()">
+                                    <button type="button" class="btn btn-primary" onclick="createMovie()">
                                         Crear
                                     </button>
                                 </td>
@@ -134,7 +126,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Actualizar clientes</h4>
+                <h4 class="modal-title">Actualiza película</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -152,49 +144,41 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <label>Name:</label>
+                                    <label>Nombre:</label>
                                 </td>
                                 <td>
-                                    <input type="text" id="nUp">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Last name:</label>
-                                </td>
-                                <td>
-                                    <input type="text" id="lnUp">
+                                    <input type="text" id="nameUp">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>ID Card:</label>
+                                    <label>Categoría:</label>
                                 </td>
                                 <td>
-                                    <input type="text" id="icUp">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Email:</label>
-                                </td>
-                                <td>
-                                    <input type="email" id="eUp">
+                                    <input type="text" id="categoryUp">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>Date of birth:</label>
+                                    <label>Tipo:</label>
                                 </td>
                                 <td>
-                                    <input type="date" id="dobUp">
+                                    <input type="text" id="typeUp">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Calificación:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="ratingUp">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" onclick="updateCustomers()">
+                                    <button type="button" class="btn btn-primary" onclick="updateMovie()">
                                         Update
                                     </button>
                                 </td>
@@ -220,19 +204,19 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Delete customers</h4>
+                    <h4 class="modal-title">Eliminar película</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body" align="center">
                     <input type="hidden" id="idDelete">
-                    <h2>Deseas eliminar al cliente?</h2>
+                    <h2>¿Deseas eliminar la película?</h2>
                 </div>
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="deleteCustomers()">Delete</button>
+                    <button type="button" class="btn btn-secondary" onclick="deleteMovie()">Delete</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeDeleteButton">Close</button>
                 </div>
 

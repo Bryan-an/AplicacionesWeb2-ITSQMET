@@ -1,12 +1,12 @@
-const buscarC = () => {
-  const b = document.getElementById("buscar").value;
+const searchMovies = () => {
+  const searchText = document.getElementById("search-text").value;
 
   $.ajax({
     data: {
       crud: "read",
-      buscar: b,
+      searchText,
     },
-    url: "../controlador/CustomersController.php",
+    url: "../controlador/MoviesController.php",
     async: true,
     type: "GET",
     dataType: "json",
@@ -18,21 +18,19 @@ const buscarC = () => {
       tabla += "<tr>";
       tabla += "<th>ID";
       tabla += "</th>";
-      tabla += "<th>NAME";
+      tabla += "<th>NOMBRE";
       tabla += "</th>";
-      tabla += "<th>LAST NAME";
+      tabla += "<th>CATEGORÍA";
       tabla += "</th>";
-      tabla += "<th>ID CARD";
+      tabla += "<th>TIPO";
       tabla += "</th>";
-      tabla += "<th>EMAIL";
+      tabla += "<th>RATING";
       tabla += "</th>";
-      tabla += "<th>DATE OF BIRTH";
+      tabla += "<th>CREADO EN";
       tabla += "</th>";
-      tabla += "<th>CREATED AT";
+      tabla += "<th>ACTUALIZADO EN";
       tabla += "</th>";
-      tabla += "<th>UPDATED AT";
-      tabla += "</th>";
-      tabla += "<th>ACTION";
+      tabla += "<th>ACCIÓN";
       tabla += "</th>";
       tabla += "</tr>";
       tabla += "</thead>";
@@ -44,20 +42,18 @@ const buscarC = () => {
         tabla += "</td>";
         tabla += "<td>" + datoArr[i].name;
         tabla += "</td>";
-        tabla += "<td>" + datoArr[i].last_name;
+        tabla += "<td>" + datoArr[i].category;
         tabla += "</td>";
-        tabla += "<td>" + datoArr[i].id_card;
+        tabla += "<td>" + datoArr[i].type;
         tabla += "</td>";
-        tabla += "<td>" + datoArr[i].email;
-        tabla += "</td>";
-        tabla += "<td>" + datoArr[i].date_of_birth;
+        tabla += "<td>" + datoArr[i].rating;
         tabla += "</td>";
         tabla += "<td>" + datoArr[i].created_at;
         tabla += "</td>";
         tabla += "<td>" + datoArr[i].updated_at;
         tabla += "</td>";
         tabla += "<td>";
-        tabla += `<button type='button' data-toggle='modal' data-target='#updateModal' class='btn btn-success mr-1' onclick='upDataUpdate("${datoArr[i].id}", "${datoArr[i].name}", "${datoArr[i].last_name}", "${datoArr[i].id_card}", "${datoArr[i].email}", "${datoArr[i].date_of_birth}")'>Update`;
+        tabla += `<button type='button' data-toggle='modal' data-target='#updateModal' class='btn btn-success mr-1' onclick='upDataUpdate("${datoArr[i].id}", "${datoArr[i].name}", "${datoArr[i].category}", "${datoArr[i].type}", "${datoArr[i].rating}")'>Actualizar`;
         tabla += "</button>";
         tabla += `<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteModal' onclick="deleteUpload('${datoArr[i].id}');">`;
         tabla += "Eliminar";
@@ -74,36 +70,33 @@ const buscarC = () => {
   });
 };
 
-const upDataUpdate = (id, n, ln, ic, e, dob) => {
+const upDataUpdate = (id, name, category, type, rating) => {
   document.getElementById("idUp").value = id;
-  document.getElementById("nUp").value = n;
-  document.getElementById("lnUp").value = ln;
-  document.getElementById("icUp").value = ic;
-  document.getElementById("eUp").value = e;
-  document.getElementById("dobUp").value = dob;
+  document.getElementById("nameUp").value = name;
+  document.getElementById("categoryUp").value = category;
+  document.getElementById("typeUp").value = type;
+  document.getElementById("ratingUp").value = rating;
 };
 
-const updateCustomers = async () => {
+const updateMovie = () => {
   let id = document.getElementById("idUp").value;
-  let n = document.getElementById("nUp").value;
-  let ln = document.getElementById("lnUp").value;
-  let ic = document.getElementById("icUp").value;
-  let e = document.getElementById("eUp").value;
-  let dob = document.getElementById("dobUp").value;
-  let ua = new Date().toISOString().slice(0, 19).replace("T", " ");
+  let name = document.getElementById("nameUp").value;
+  let category = document.getElementById("categoryUp").value;
+  let type = document.getElementById("typeUp").value;
+  let rating = document.getElementById("ratingUp").value;
+  let updated_at = new Date().toISOString().slice(0, 19).replace("T", " ");
 
   $.ajax({
     data: {
       crud: "update",
       id,
-      n,
-      ln,
-      ic,
-      e,
-      dob,
-      ua,
+      name,
+      category,
+      type,
+      rating,
+      updated_at,
     },
-    url: "../controlador/CustomersController.php",
+    url: "../controlador/MoviesController.php",
     async: true,
     type: "GET",
     dataType: "text",
@@ -111,13 +104,13 @@ const updateCustomers = async () => {
       dato = dato.trim();
 
       if (dato === "1") {
-        alert("Cliente actualizado");
+        alert("Película actualizada");
       } else {
-        alert("Cliente no actualizado");
+        alert("Película no actualizada");
       }
 
       document.getElementById("closeUpdateButton").click();
-      buscarC();
+      searchMovies();
     },
   });
 };
@@ -126,7 +119,7 @@ const deleteUpload = (id) => {
   document.getElementById("idDelete").value = id;
 };
 
-const deleteCustomers = () => {
+const deleteMovie = () => {
   let id = document.getElementById("idDelete").value;
 
   $.ajax({
@@ -134,7 +127,7 @@ const deleteCustomers = () => {
       crud: "delete",
       id,
     },
-    url: "../controlador/CustomersController.php",
+    url: "../controlador/MoviesController.php",
     async: true,
     type: "GET",
     dataType: "text",
@@ -142,38 +135,36 @@ const deleteCustomers = () => {
       dato = dato.trim();
 
       if (dato === "1") {
-        alert("Cliente eliminado");
+        alert("Película eliminada");
       } else {
-        alert("Cliente no eliminado");
+        alert("Película no eliminada");
       }
 
       document.getElementById("closeDeleteButton").click();
-      buscarC();
+      searchMovies();
     },
   });
 };
 
-const insertCustomers = () => {
-  let n = document.getElementById("nIn").value;
-  let ln = document.getElementById("lnIn").value;
-  let ic = document.getElementById("icIn").value;
-  let e = document.getElementById("eIn").value;
-  let dob = document.getElementById("dobIn").value;
-  let ua = new Date().toISOString().slice(0, 19).replace("T", " ");
-  let ca = new Date().toISOString().slice(0, 19).replace("T", " ");
+const createMovie = () => {
+  let name = document.getElementById("nameIn").value;
+  let category = document.getElementById("categoryIn").value;
+  let type = document.getElementById("typeIn").value;
+  let rating = document.getElementById("ratingIn").value;
+  let created_at = new Date().toISOString().slice(0, 19).replace("T", " ");
+  let updated_at = new Date().toISOString().slice(0, 19).replace("T", " ");
 
   $.ajax({
     data: {
       crud: "create",
-      n,
-      ln,
-      ic,
-      e,
-      dob,
-      ca,
-      ua,
+      name,
+      category,
+      type,
+      rating,
+      created_at,
+      updated_at,
     },
-    url: "../controlador/CustomersController.php",
+    url: "../controlador/MoviesController.php",
     async: true,
     type: "GET",
     dataType: "text",
@@ -181,18 +172,18 @@ const insertCustomers = () => {
       dato = dato.trim();
 
       if (dato === "1") {
-        alert("Cliente creado");
+        alert("Película creada");
       } else {
-        alert("Cliente no creado");
+        alert("Película no creada");
       }
 
       document.getElementById("closeCreateButton").click();
-      buscarC();
+      searchMovies();
     },
   });
 };
 
 // window.addEventListener("load", buscarC);
 window.onload = function () {
-  buscarC();
+  searchMovies();
 };

@@ -58,7 +58,7 @@ const buscarC = () => {
         tabla += "</td>";
         tabla += "<td>";
         tabla += `<button type='button' data-toggle='modal' data-target='#updateModal' class='btn btn-success' onclick='upDataUpdate("${datoArr[i].id}", "${datoArr[i].name}", "${datoArr[i].last_name}", "${datoArr[i].id_card}", "${datoArr[i].email}", "${datoArr[i].date_of_birth}")'>Update`;
-        tabla += "</button>";
+        tabla += "</button><br>";
         tabla += "</td>";
         tabla += "</tr>";
       }
@@ -80,7 +80,7 @@ const upDataUpdate = (id, n, ln, ic, e, dob) => {
   document.getElementById("dobUp").value = dob;
 };
 
-const updateCustomers = async () => {
+const updateCustomers = () => {
   let id = document.getElementById("idUp").value;
   let n = document.getElementById("nUp").value;
   let ln = document.getElementById("lnUp").value;
@@ -108,8 +108,4 @@ const updateCustomers = async () => {
       alert(dato);
     },
   });
-
-  await buscarC();
 };
-
-window.addEventListener("load", () => buscarC());

@@ -58,7 +58,7 @@ CREATE TABLE `movies` (
   `name` varchar(45) NOT NULL,
   `category` varchar(45) NOT NULL,
   `type` varchar(45) NOT NULL,
-  `rating` float(1,1) NOT NULL,
+  `rating` float(2,1) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
