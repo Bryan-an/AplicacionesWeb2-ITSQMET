@@ -4,7 +4,7 @@ function readRooms($searchText)
 {
     include "CBDD.php";
 
-    $sql = "SELECT r.`id`, r.`name`, r.`capacity`, r.`feature`, r.`created_at`, r.`updated_at`, r.`movie_id`, m.`name`  FROM `rooms` AS r INNER JOIN `movies` AS `m` ON r.`movie_id` = m.`id` WHERE r.`name` LIKE '%$searchText%'";
+    $sql = "SELECT `id`, `name`, `capacity`, `feature`, `created_at`, `updated_at`  FROM `rooms` WHERE `name` LIKE '%$searchText%'";
 
     $result = mysqli_query($cnx, $sql);
 
@@ -12,33 +12,31 @@ function readRooms($searchText)
 
         $arr[] = array(
             'id' => $obj['id'],
-            'name' => $obj[1],
+            'name' => $obj['name'],
             'capacity' => $obj['capacity'],
             'feature' => $obj['feature'],
             'created_at' => $obj['created_at'],
             'updated_at' => $obj['updated_at'],
-            'movie_id' => $obj['movie_id'],
-            'movie_name' => $obj['name'],
         );
     }
 
     return json_encode($arr);
 }
 
-function createRooms($name, $capacity, $feature, $created_at, $updated_at, $movie_id)
+function createRooms($name, $capacity, $feature, $created_at, $updated_at)
 {
     include "CBDD.php";
 
-    $sql = "INSERT INTO `rooms`(`name`, `capacity`, `feature`, `created_at`, `updated_at`, `movie_id`) VALUES ('$name', '$capacity','$feature','$created_at','$updated_at', '$movie_id')";
+    $sql = "INSERT INTO `rooms`(`name`, `capacity`, `feature`, `created_at`, `updated_at`) VALUES ('$name', '$capacity','$feature','$created_at','$updated_at')";
 
     return mysqli_query($cnx, $sql);
 }
 
-function updateRooms($id, $name, $capacity, $feature, $updated_at, $movie_id)
+function updateRooms($id, $name, $capacity, $feature, $updated_at)
 {
     include "CBDD.php";
 
-    $sql = "UPDATE `rooms` SET `name`='$name',`capacity`=$capacity,`feature`='$feature',`updated_at`='$updated_at', `movie_id` = '$movie_id' WHERE `id` = $id";
+    $sql = "UPDATE `rooms` SET `name`='$name',`capacity`=$capacity,`feature`='$feature',`updated_at`='$updated_at' WHERE `id` = $id";
 
     return mysqli_query($cnx, $sql);
 }

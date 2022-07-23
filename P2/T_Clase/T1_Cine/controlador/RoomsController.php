@@ -20,16 +20,15 @@ if (isset($_GET['crud'])) {
                 && isset($_GET['feature'])
                 && isset($_GET['created_at'])
                 && isset($_GET['updated_at'])
-                && isset($_GET['movie_id'])) {
+            ) {
 
                 $name = $_GET['name'];
                 $capacity = $_GET['capacity'];
                 $feature = $_GET['feature'];
                 $created_at = $_GET['created_at'];
                 $updated_at = $_GET['updated_at'];
-                $movie_id = $_GET['movie_id'];
 
-                echo "" . createRooms($name, $capacity, $feature, $created_at, $updated_at, $movie_id);
+                echo "" . createRooms($name, $capacity, $feature, $created_at, $updated_at);
             }
 
             break;
@@ -39,16 +38,15 @@ if (isset($_GET['crud'])) {
                 && isset($_GET['capacity'])
                 && isset($_GET['feature'])
                 && isset($_GET['updated_at'])
-                && isset($_GET['movie_id'])) {
+            ) {
 
                 $id = $_GET['id'];
                 $name = $_GET['name'];
                 $capacity = $_GET['capacity'];
                 $feature = $_GET['feature'];
                 $updated_at = $_GET['updated_at'];
-                $movie_id = $_GET['movie_id'];
 
-                echo "" . updateRooms($id, $name, $capacity, $feature, $updated_at, $movie_id);
+                echo "" . updateRooms($id, $name, $capacity, $feature, $updated_at);
             }
 
             break;

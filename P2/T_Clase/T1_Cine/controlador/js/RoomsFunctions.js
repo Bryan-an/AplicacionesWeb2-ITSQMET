@@ -1,31 +1,3 @@
-let movies = [];
-
-(() => {
-  $.ajax({
-    data: {
-      crud: "read",
-      searchText: "",
-    },
-    url: "../controlador/MoviesController.php",
-    async: true,
-    type: "GET",
-    dataType: "json",
-    success: function (dato) {
-      // alert(dato);
-      movies = eval(dato);
-
-      let html = "";
-      movies.forEach(
-        (movie) =>
-          (html += `<option value="${movie.id}">${movie.name}</option>`)
-      );
-
-      document.getElementById("movieIn").innerHTML = html;
-      document.getElementById("movieUp").innerHTML = html;
-    },
-  });
-})();
-
 const searchRooms = () => {
   const searchText = document.getElementById("search-text").value;
 
@@ -52,8 +24,6 @@ const searchRooms = () => {
       tabla += "</th>";
       tabla += "<th>CARACTERÍSTICA";
       tabla += "</th>";
-      tabla += "<th>PELÍCULA";
-      tabla += "</th>";
       tabla += "<th>CREADO EN";
       tabla += "</th>";
       tabla += "<th>ACTUALIZADO EN";
@@ -74,14 +44,12 @@ const searchRooms = () => {
         tabla += "</td>";
         tabla += "<td>" + datoArr[i].feature;
         tabla += "</td>";
-        tabla += "<td>" + datoArr[i].movie_name;
-        tabla += "</td>";
         tabla += "<td>" + datoArr[i].created_at;
         tabla += "</td>";
         tabla += "<td>" + datoArr[i].updated_at;
         tabla += "</td>";
         tabla += "<td>";
-        tabla += `<button type='button' data-toggle='modal' data-target='#updateModal' class='btn btn-success mr-1' onclick='upDataUpdate("${datoArr[i].id}", "${datoArr[i].name}", "${datoArr[i].capacity}", "${datoArr[i].feature}", "${datoArr[i].movie_id}")'>Actualizar`;
+        tabla += `<button type='button' data-toggle='modal' data-target='#updateModal' class='btn btn-success mr-1' onclick='upDataUpdate("${datoArr[i].id}", "${datoArr[i].name}", "${datoArr[i].capacity}", "${datoArr[i].feature}")'>Actualizar`;
         tabla += "</button>";
         tabla += `<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#deleteModal' onclick="deleteUpload('${datoArr[i].id}');">`;
         tabla += "Eliminar";
@@ -98,12 +66,11 @@ const searchRooms = () => {
   });
 };
 
-const upDataUpdate = (id, name, capacity, feature, movieId) => {
+const upDataUpdate = (id, name, capacity, feature) => {
   document.getElementById("idUp").value = id;
   document.getElementById("nameUp").value = name;
   document.getElementById("capacityUp").value = capacity;
   document.getElementById("featureUp").value = feature;
-  document.getElementById("movieUp").value = movieId;
 };
 
 const updateRoom = () => {
@@ -111,7 +78,6 @@ const updateRoom = () => {
   let name = document.getElementById("nameUp").value;
   let capacity = document.getElementById("capacityUp").value;
   let feature = document.getElementById("featureUp").value;
-  let movie_id = document.getElementById("movieUp").value;
   let updated_at = new Date().toISOString().slice(0, 19).replace("T", " ");
 
   $.ajax({
@@ -121,7 +87,6 @@ const updateRoom = () => {
       name,
       capacity,
       feature,
-      movie_id,
       updated_at,
     },
     url: "../controlador/RoomsController.php",
@@ -178,7 +143,6 @@ const createRoom = () => {
   let name = document.getElementById("nameIn").value;
   let capacity = document.getElementById("capacityIn").value;
   let feature = document.getElementById("featureIn").value;
-  let movie_id = document.getElementById("movieIn").value;
   let created_at = new Date().toISOString().slice(0, 19).replace("T", " ");
   let updated_at = new Date().toISOString().slice(0, 19).replace("T", " ");
 
@@ -188,7 +152,6 @@ const createRoom = () => {
       name,
       capacity,
       feature,
-      movie_id,
       created_at,
       updated_at,
     },
@@ -211,7 +174,6 @@ const createRoom = () => {
   });
 };
 
-// window.addEventListener("load", buscarC);
 window.onload = function () {
   searchRooms();
 };

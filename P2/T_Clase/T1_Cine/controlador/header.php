@@ -54,6 +54,7 @@ if ($_SESSION['role'] == "administrator") {
 <?php
 }
 ?>
+                        <a class="dropdown-item" href="../vista/SchedulesMoviesRoomsView.php">Horarios - Peliculas - Salas</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
