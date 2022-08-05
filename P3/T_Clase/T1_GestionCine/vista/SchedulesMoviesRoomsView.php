@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vista Películas</title>
+    <title>Vista Horarios - Peliculas - Salas</title>
     <?php include '../controlador/libs.php'?>
-    <script type="text/javascript" src="../controlador/js/UsersFunctions.js"></script>
+    <script type="text/javascript" src="../controlador/js/SchedulesMoviesRoomsFunctions.js"></script>
 </head>
 <body>
     <?php include '../controlador/header.php'?>
     <div>
         <div class="container" align="center">
-            <h2>Vista Usuarios</h2>
+            <h2>Vista Horarios - Peliculas - Salas</h2>
             <hr>
             <form>
                 <table>
@@ -28,7 +28,7 @@
                         <td>
                         </td>
                         <td>
-                            <button type="button" onclick="searchUsers()" class="btn btn-primary" style="width: 75px; height: 35px;">Buscar</button>
+                            <button type="button" onclick="searchSchedulesMoviesRooms()" class="btn btn-primary" style="width: 75px; height: 35px;">Buscar</button>
                         </td>
                     </tr>
                     <tr>
@@ -56,7 +56,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Crear usuario</h4>
+                <h4 class="modal-title">Crear horario - pelicula - sala</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -65,31 +65,29 @@
                 <form>
                         <table>
                             <tr>
-                                <td>
-                                    <label>Usuario:</label>
+                            <td>
+                                    <label>Horario:</label>
                                 </td>
                                 <td>
-                                    <input type="text" id="userIn">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Contraseña:</label>
-                                </td>
-                                <td>
-                                    <input type="password" id="passwordIn">
+                                    <select id="scheduleIn">
+                                    </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>Role:</label>
+                                    <label>Película:</label>
                                 </td>
                                 <td>
-                                    <!-- <input type="text" id="roleIn"> -->
-                                    <select id="roleIn">
-                                        <option value="1">Administrador</option>
-                                        <option value="2">Ventas</option>
-                                        <option value="3">Cliente</option>
+                                    <select id="movieIn">
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Sala:</label>
+                                </td>
+                                <td>
+                                    <select id="roomIn">
                                     </select>
                                 </td>
                             </tr>
@@ -97,7 +95,7 @@
                                 <td>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" onclick="createUser()">
+                                    <button type="button" class="btn btn-primary" onclick="createSchedulesMoviesRooms()">
                                         Crear
                                     </button>
                                 </td>
@@ -108,7 +106,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeCreateButton">Close</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeCreateButton">Cancelar</button>
                 </div>
 
             </div>
@@ -123,7 +121,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Actualiza usuario</h4>
+                <h4 class="modal-title">Actualizar horario - pelicula - sala</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -131,44 +129,39 @@
             <div class="modal-body" align="center">
                 <form>
                         <table>
-                            <tr>
-                                <td>
-                                    <label>Id:</label>
+                        <tr>
+                            <td>
+                                    <label>Horario:</label>
                                 </td>
                                 <td>
-                                    <input type="text" id="idUp" readonly>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Usuario:</label>
-                                </td>
-                                <td>
-                                    <input type="text" id="userUp">
+                                    <select id="scheduleUp">
+                                    </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>Contraseña:</label>
+                                    <label>Película:</label>
                                 </td>
                                 <td>
-                                    <input type="password" id="passwordUp">
+                                    <select id="movieUp">
+                                    </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>Role:</label>
+                                    <label>Sala:</label>
                                 </td>
                                 <td>
-                                    <input type="text" id="roleUp">
+                                    <select id="roomUp">
+                                    </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" onclick="updateUser()">
-                                        Update
+                                    <button type="button" class="btn btn-primary" onclick="updateSchedulesMoviesRooms()">
+                                        Actualizar
                                     </button>
                                 </td>
                             </tr>
@@ -178,7 +171,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeUpdateButton">Close</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeUpdateButton">Cancelar</button>
                 </div>
 
             </div>
@@ -193,20 +186,22 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Eliminar usuario</h4>
+                    <h4 class="modal-title">Eliminar horario - pelicula - sala</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body" align="center">
-                    <input type="hidden" id="idDelete">
-                    <h2>¿Deseas eliminar el usuario?</h2>
+                    <input type="hidden" id="scheduleIdDelete">
+                    <input type="hidden" id="movieIdDelete">
+                    <input type="hidden" id="roomIdDelete">
+                    <h2>¿Deseas eliminar el horario - pelicula - sala?</h2>
                 </div>
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="deleteUser()">Delete</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeDeleteButton">Close</button>
+                    <button type="button" class="btn btn-secondary" onclick="deleteSchedulesMoviesRooms()">Eliminar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeDeleteButton">Cancelar</button>
                 </div>
 
             </div>

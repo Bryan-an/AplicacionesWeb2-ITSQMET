@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vista Películas</title>
+    <title>Sellers View</title>
     <?php include '../controlador/libs.php'?>
-    <script type="text/javascript" src="../controlador/js/UsersFunctions.js"></script>
+    <script type="text/javascript" src="../controlador/js/SellersFunctions.js"></script>
 </head>
 <body>
     <?php include '../controlador/header.php'?>
     <div>
         <div class="container" align="center">
-            <h2>Vista Usuarios</h2>
+            <h2>Sellers View</h2>
             <hr>
             <form>
                 <table>
@@ -28,7 +28,7 @@
                         <td>
                         </td>
                         <td>
-                            <button type="button" onclick="searchUsers()" class="btn btn-primary" style="width: 75px; height: 35px;">Buscar</button>
+                            <button type="button" onclick="searchSellers()" class="btn btn-primary" style="width: 75px; height: 35px;">Buscar</button>
                         </td>
                     </tr>
                     <tr>
@@ -56,7 +56,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Crear usuario</h4>
+                <h4 class="modal-title">Crear vendedor</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -66,38 +66,65 @@
                         <table>
                             <tr>
                                 <td>
-                                    <label>Usuario:</label>
+                                    <label>Nombre:</label>
                                 </td>
                                 <td>
-                                    <input type="text" id="userIn">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Contraseña:</label>
-                                </td>
-                                <td>
-                                    <input type="password" id="passwordIn">
+                                    <input type="text" id="nameIn">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>Role:</label>
+                                    <label>Apellido:</label>
                                 </td>
                                 <td>
-                                    <!-- <input type="text" id="roleIn"> -->
-                                    <select id="roleIn">
-                                        <option value="1">Administrador</option>
-                                        <option value="2">Ventas</option>
-                                        <option value="3">Cliente</option>
-                                    </select>
+                                    <input type="text" id="lastNameIn">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Teléfono:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="phoneIn">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Dirección:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="addressIn">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Correo electrónico:</label>
+                                </td>
+                                <td>
+                                    <input type="email" id="emailIn">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Fecha de nacimiento:</label>
+                                </td>
+                                <td>
+                                    <input type="date" id="dateOfBirthIn">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Cédula:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="idCardIn">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" onclick="createUser()">
+                                    <button type="button" class="btn btn-primary" onclick="createSeller()">
                                         Crear
                                     </button>
                                 </td>
@@ -123,7 +150,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Actualiza usuario</h4>
+                <h4 class="modal-title">Actualizar vendedor</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -141,33 +168,65 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <label>Usuario:</label>
+                                    <label>Nombre:</label>
                                 </td>
                                 <td>
-                                    <input type="text" id="userUp">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Contraseña:</label>
-                                </td>
-                                <td>
-                                    <input type="password" id="passwordUp">
+                                    <input type="text" id="nameUp">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>Role:</label>
+                                    <label>Apellido:</label>
                                 </td>
                                 <td>
-                                    <input type="text" id="roleUp">
+                                    <input type="text" id="lastNameUp">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Teléfono:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="phoneUp">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Dirección:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="addressUp">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Correo electrónico:</label>
+                                </td>
+                                <td>
+                                    <input type="email" id="emailUp">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Fecha de nacimiento:</label>
+                                </td>
+                                <td>
+                                    <input type="date" id="dateOfBirthUp">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Cédula:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="idCardUp">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" onclick="updateUser()">
+                                    <button type="button" class="btn btn-primary" onclick="updateSeller()">
                                         Update
                                     </button>
                                 </td>
@@ -193,19 +252,19 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Eliminar usuario</h4>
+                    <h4 class="modal-title">Eliminar vendedor</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body" align="center">
                     <input type="hidden" id="idDelete">
-                    <h2>¿Deseas eliminar el usuario?</h2>
+                    <h2>Deseas eliminar al vendedor?</h2>
                 </div>
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="deleteUser()">Delete</button>
+                    <button type="button" class="btn btn-secondary" onclick="deleteSeller()">Delete</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeDeleteButton">Close</button>
                 </div>
 

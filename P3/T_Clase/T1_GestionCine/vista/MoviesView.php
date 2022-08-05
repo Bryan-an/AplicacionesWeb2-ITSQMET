@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vista Películas</title>
     <?php include '../controlador/libs.php'?>
-    <script type="text/javascript" src="../controlador/js/UsersFunctions.js"></script>
+    <script type="text/javascript" src="../controlador/js/MoviesFunctions.js"></script>
 </head>
 <body>
     <?php include '../controlador/header.php'?>
     <div>
         <div class="container" align="center">
-            <h2>Vista Usuarios</h2>
+            <h2>Vista Películas</h2>
             <hr>
             <form>
                 <table>
@@ -28,7 +28,7 @@
                         <td>
                         </td>
                         <td>
-                            <button type="button" onclick="searchUsers()" class="btn btn-primary" style="width: 75px; height: 35px;">Buscar</button>
+                            <button type="button" onclick="searchMovies()" class="btn btn-primary" style="width: 75px; height: 35px;">Buscar</button>
                         </td>
                     </tr>
                     <tr>
@@ -56,7 +56,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Crear usuario</h4>
+                <h4 class="modal-title">Crear película</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -66,38 +66,41 @@
                         <table>
                             <tr>
                                 <td>
-                                    <label>Usuario:</label>
+                                    <label>Nombre:</label>
                                 </td>
                                 <td>
-                                    <input type="text" id="userIn">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Contraseña:</label>
-                                </td>
-                                <td>
-                                    <input type="password" id="passwordIn">
+                                    <input type="text" id="nameIn">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>Role:</label>
+                                    <label>Categoría:</label>
                                 </td>
                                 <td>
-                                    <!-- <input type="text" id="roleIn"> -->
-                                    <select id="roleIn">
-                                        <option value="1">Administrador</option>
-                                        <option value="2">Ventas</option>
-                                        <option value="3">Cliente</option>
-                                    </select>
+                                    <input type="text" id="categoryIn">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Tipo:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="typeIn">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Calificación:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="ratingIn">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" onclick="createUser()">
+                                    <button type="button" class="btn btn-primary" onclick="createMovie()">
                                         Crear
                                     </button>
                                 </td>
@@ -123,7 +126,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Actualiza usuario</h4>
+                <h4 class="modal-title">Actualiza película</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -141,33 +144,41 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <label>Usuario:</label>
+                                    <label>Nombre:</label>
                                 </td>
                                 <td>
-                                    <input type="text" id="userUp">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label>Contraseña:</label>
-                                </td>
-                                <td>
-                                    <input type="password" id="passwordUp">
+                                    <input type="text" id="nameUp">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>Role:</label>
+                                    <label>Categoría:</label>
                                 </td>
                                 <td>
-                                    <input type="text" id="roleUp">
+                                    <input type="text" id="categoryUp">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Tipo:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="typeUp">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Calificación:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="ratingUp">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" onclick="updateUser()">
+                                    <button type="button" class="btn btn-primary" onclick="updateMovie()">
                                         Update
                                     </button>
                                 </td>
@@ -193,19 +204,19 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Eliminar usuario</h4>
+                    <h4 class="modal-title">Eliminar película</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body" align="center">
                     <input type="hidden" id="idDelete">
-                    <h2>¿Deseas eliminar el usuario?</h2>
+                    <h2>¿Deseas eliminar la película?</h2>
                 </div>
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="deleteUser()">Delete</button>
+                    <button type="button" class="btn btn-secondary" onclick="deleteMovie()">Delete</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeDeleteButton">Close</button>
                 </div>
 
